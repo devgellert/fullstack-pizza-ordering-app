@@ -4,48 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class AuthController extends Controller
 {
     public function login(Request $request)
     {
-        $email = $request->request->get("email");
-        $password = $request->request->get("password");
-
-        /** @var User $user */
-        $user = User::where("email", $email)->first();
-        if(!$user)
-        {
-            throw new NotFoundHttpException();
+        $token = Auth::attempt($request->all(["email", "password"]));
+        if(!$token) {
+            return Response::json(["message" => "Failed to log in."], 401);
         }
-
-        if(!Hash::check($password, $user->getAttribute("password")))
-        {
-            return Response::make(["message" => "Password is not correct."], 403);
-        }
-
-        $token = $user->createToken("auth-token");
-
-        auth()->setUser($user);
-
-        return [
-            "token" => $token->plainTextToken
-        ];
+        return $this->createTokenView($token);
     }
 
     public function register(Request $request)
     {
-        $user = new User($request->request->all());
+        $user = new User($request->all(["email", "name", "password"]));
         $user->hashAndSetPassword($request->request->get("password"));
         $user->save();
         return $user;
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        return auth()->user()->tokens()->delete();
+        Auth::logout();
+        return Response::json(['message' => 'Successfully logged out']);
+    }
+
+    public function refresh()
+    {
+        $token = Auth::refresh();
+        return $this->createTokenView($token);
+    }
+
+    private function createTokenView(string $token) {
+        return [
+            "token" => $token
+        ];
     }
 }
