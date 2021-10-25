@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ ! -d /.composer ]; then
+    mkdir /.composer
+fi
+
+chmod -R ugo+rw /.composer
+
+/usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
