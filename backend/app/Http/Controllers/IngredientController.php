@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pizza;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Auth;
 
-class PizzaController extends Controller
+class IngredientController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +16,7 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        return Pizza::all();
+        return Ingredient::all();
     }
 
     /**
@@ -30,12 +29,10 @@ class PizzaController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|min:3|max:255',
-            'price' => 'required|integer|min:3|max:255',
-            'size' => 'required|integer|min:1000|max:10000',
         ]);
 
 
-        Pizza::create($validated);
+        Ingredient::create($validated);
         return Response::noContent(201);
     }
 
@@ -47,7 +44,7 @@ class PizzaController extends Controller
     */
    public function show($id)
    {
-       return Pizza::find($id);
+       return Ingredient::find($id);
    }
 
    /**
@@ -59,24 +56,20 @@ class PizzaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        /** @var Pizza $pizza */
-        $pizza = Pizza::find($id);
-        if (!$pizza) {
+        /** @var Ingredient $ingredient */
+        $ingredient = Ingredient::find($id);
+        if (!$ingredient) {
             throw new NotFoundHttpException();
         }
         $validated = $request->validate([
             'name' => 'required|string|min:3|max:255',
-            'ingredients' => 'required|string|min:10|max:12',
-            'price' => 'required|integer|min:3|max:255',
-            'size' => 'required|integer|min:1000|max:10000',
         ]);
 
-        $pizza->update($validated);
+        $ingredient->update($validated);
         return Response::noContent(200);
     }
 
-
-   /**
+       /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
@@ -84,12 +77,12 @@ class PizzaController extends Controller
      */
     public function destroy($id)
     {
-        /** @var Pizza $pizza */
-        $pizza = Pizza::find($id);
-        if (!$pizza) {
+        /** @var Ingredient $ingredient */
+        $ingredient = Ingredient::find($id);
+        if (!$ingredient) {
             throw new NotFoundHttpException();
         }
-        $pizza->delete();
+        $ingredient->delete();
 
         return Response::noContent(200);
     }

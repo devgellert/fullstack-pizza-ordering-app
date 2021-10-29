@@ -14,4 +14,8 @@ class Pizza extends Model
     public function orders(){
         return $this->belongsToMany(Order::class)->withTimestamps();
     }
+
+    public function ingredients(){
+        return $this->belongsToMany(Ingredient::class)->withTimestamps();
+    }
 }
