@@ -51,7 +51,7 @@ class PizzaController extends Controller
    public function show($id)
    {
        $pizza = Pizza::find($id);
-       $pizza["ingredients"] = $pizza->ingredients;
+       $pizza->ingredients;
        return $pizza;
    }
 
