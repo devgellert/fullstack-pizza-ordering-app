@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pizza;
+use App\Models\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -30,13 +31,15 @@ class PizzaController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|min:3|max:255',
-            'price' => 'required|integer|min:3|max:255',
-            'size' => 'required|integer|min:1000|max:10000',
+            'price' => 'required|integer|min:1000|max:10000',
+            'size' => 'required|integer|min:10|max:50',
+            'ingredient' => 'nullable',
+            'ingredient.*' => 'integer|distinct|exists:ingredients,id'
         ]);
 
-
-        Pizza::create($validated);
-        return Response::noContent(201);
+        $pizza = Pizza::create($validated);
+        $pizza->ingredients()->attach($request->ingredient);
+        return Response::noContent(200);
     }
 
     /*
@@ -47,7 +50,9 @@ class PizzaController extends Controller
     */
    public function show($id)
    {
-       return Pizza::find($id);
+       $pizza = Pizza::find($id);
+       $pizza["ingredients"] = $pizza->ingredients;
+       return $pizza;
    }
 
    /**
@@ -66,12 +71,15 @@ class PizzaController extends Controller
         }
         $validated = $request->validate([
             'name' => 'required|string|min:3|max:255',
-            'ingredients' => 'required|string|min:10|max:12',
-            'price' => 'required|integer|min:3|max:255',
-            'size' => 'required|integer|min:1000|max:10000',
+            'price' => 'required|integer|min:1000|max:10000',
+            'size' => 'required|integer|min:10|max:50',
+            'ingredient' => 'nullable',
+            'ingredient.*' => 'integer|distinct|exists:ingredients,id'
         ]);
 
         $pizza->update($validated);
+        $pizza->ingredients()->detach($pizza->ingredients);
+        $pizza->ingredients()->attach($request->ingredient);
         return Response::noContent(200);
     }
 

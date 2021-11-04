@@ -9,7 +9,7 @@ class Ingredient extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['status'];
+    protected $fillable = ['name'];
 
     public function pizzas(){
         return $this->belongsToMany(Pizza::class)->withTimestamps();

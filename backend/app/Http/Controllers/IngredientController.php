@@ -32,8 +32,8 @@ class IngredientController extends Controller
         ]);
 
 
-        Ingredient::create($validated);
-        return Response::noContent(201);
+        $ingredient = Ingredient::create($validated);
+        return $ingredient;
     }
 
     /*
@@ -82,6 +82,7 @@ class IngredientController extends Controller
         if (!$ingredient) {
             throw new NotFoundHttpException();
         }
+        $ingredient->pizzas()->detach($ingredient->pizzas);
         $ingredient->delete();
 
         return Response::noContent(200);
