@@ -106,9 +106,9 @@ class OrderController extends Controller
         $validated = $request->validate(
             [
                 'status' => 'required|in:'.join(",", self::statuses),
-                'customer_name' => 'required|string|min:3|max:255',
-                'customer_phone' => 'required|string|min:10|max:12',
-                'destination' => 'required|string|min:3|max:255',
+                'customer_name' => 'string|min:3|max:255',
+                'customer_phone' => 'string|min:10|max:12',
+                'destination' => 'string|min:3|max:255',
                 'pizzas' => 'nullable',
             ]
         );
