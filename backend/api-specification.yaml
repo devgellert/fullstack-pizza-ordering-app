@@ -16,6 +16,13 @@ tags:
 
 schemes:
   - "http"
+
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+
 paths:
   /api/auth/login:
     post:
@@ -107,6 +114,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/auth/refresh:
     post:
+      security:
+        - Bearer: []
       tags:
         - "auth"
       summary: "Authentikáció megújítása"
@@ -141,6 +150,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/auth/logout:
     post:
+      security:
+        - Bearer: []
       tags:
         - "auth"
       summary: "Felhasználó kiléptetése"
@@ -237,6 +248,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/ingredient/create:
     post:
+      security:
+        - Bearer: []
       tags:
         - "ingredient"
       summary: "Hozzávaló létrehozása"
@@ -273,6 +286,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/ingredient/delete/{id}:
     delete:
+      security:
+        - Bearer: []
       tags:
         - "ingredient"
       summary: "Adott Idval rendelkező hozzávaló törlése"
@@ -304,6 +319,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/ingredient/update/{id}:
     patch:
+      security:
+        - Bearer: []
       tags:
         - "ingredient"
       summary: "Adott Idval rendelkező hozzávaló frissítése"
@@ -386,6 +403,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/pizza/create:
     post:
+      security:
+        - Bearer: []
       tags:
         - "pizza"
       summary: "Pizza létrehozása"
@@ -431,6 +450,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/pizza/delete/{id}:
     delete:
+      security:
+        - Bearer: []
       tags:
         - "pizza"
       summary: "Adott Idval rendelkező pizza törlése"
@@ -462,6 +483,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/pizza/update/{id}:
     patch:
+      security:
+        - Bearer: []
       tags:
         - "pizza"
       summary: "Adott Idval rendelkező pizza"
@@ -512,6 +535,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/order/:
     get:
+      security:
+        - Bearer: []
       tags:
         - "order"
       summary: "Összes rendelés"
@@ -545,6 +570,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/order/ordered:
     get:
+      security:
+        - Bearer: []
       tags:
         - "order"
       summary: "A megrendelt státuszú rendelések"
@@ -578,6 +605,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/order/accepted:
     get:
+      security:
+        - Bearer: []
       tags:
         - "order"
       summary: "Az elfogadott státuszú rendelések"
@@ -611,6 +640,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/order/cooked:
     get:
+      security:
+        - Bearer: []
       tags:
         - "order"
       summary: "Az elkészült státuszú rendelések"
@@ -644,6 +675,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/order/delivered:
     get:
+      security:
+        - Bearer: []
       tags:
         - "order"
       summary: "A kiszállított státuszú rendelések"
@@ -752,6 +785,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/order/accept/{id}:
     post:
+      security:
+        - Bearer: []
       tags:
         - "order"
       summary: "Adott Idval rendelkező rendelés elfogadás"
@@ -782,6 +817,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/order/cook/{id}:
     post:
+      security:
+        - Bearer: []
       tags:
         - "order"
       summary: "Adott Idval rendelkező rendelés elkészült státuszba rakása"
@@ -812,6 +849,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/order/deliver/{id}:
     post:
+      security:
+        - Bearer: []
       tags:
         - "order"
       summary: "Adott Idval rendelkező rendelés kiszállítva státuszba rakása"
@@ -842,6 +881,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/order/delete/{id}:
     delete:
+      security:
+        - Bearer: []
       tags:
         - "order"
       summary: "Adott Idval rendelkező rendelés törlése"
@@ -872,6 +913,8 @@ paths:
           description: "Bármilyen egyéb hiba esetén ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
   /api/order/update/{id}:
     patch:
+      security:
+        - Bearer: []
       tags:
         - "order"
       summary: "Adott Idval rendelkező rendelés firssítése"
@@ -931,6 +974,7 @@ paths:
                 type: string
         "500":
           description: "Bármilyen egyéb hiba eseté8n ez kerül visszaküldésre, de tipikusan ilyen lehet, ha nincs kapcsolat az adatbázissal. Tartalmazza a hiba nevét és a hibához kapott üzenetet is, hogy könnyebb legyen azt kijelezni vagy adott esetben felderíteni."
+
 definitions:
   Pizza:
     type: object
