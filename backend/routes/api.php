@@ -27,7 +27,6 @@ Route::group(["prefix" => "pizza", "name" => "pizza"], function () {
     });
 });
 
-
 Route::group(["prefix" => "ingredient", "name" => "ingredient"], function () {
     Route::get("/", [IngredientController::class, "index"])->name("index");
     Route::get("/{id}", [IngredientController::class, "show"])->name("show");
