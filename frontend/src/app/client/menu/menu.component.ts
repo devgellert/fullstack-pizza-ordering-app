@@ -17,4 +17,8 @@ export class MenuComponent implements OnInit {
   getPizzas() {
     return this.menuService.getPizzas();
   }
+
+  getPizzaImage() {
+    return this.menuService.getRandomPizzaPicture();
+  }
 }
