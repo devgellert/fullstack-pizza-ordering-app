@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {AdminComponent} from "./admin/admin.component";
-import {ClientComponent} from "./client/client.component";
-import {MenuComponent} from "./client/menu/menu.component";
-import {PizzaViewComponent} from "./client/pizza-view/pizza-view.component";
-import {CartComponent} from "./client/cart/cart.component";
+import { AdminComponent } from './admin/admin.component';
+import { ClientComponent } from './client/client.component';
+import { MenuComponent } from './client/menu/menu.component';
+import { PizzaViewComponent } from './client/pizza-view/pizza-view.component';
+import { CartComponent } from './client/cart/cart.component';
+import { CheckoutComponent } from './client/checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -17,17 +18,21 @@ const routes: Routes = [
     children: [
       {
         component: MenuComponent,
-        path: 'menu'
+        path: 'menu',
       },
       {
         component: PizzaViewComponent,
-        path: 'menu/:id'
+        path: 'menu/:id',
       },
       {
         component: CartComponent,
-        path: 'cart'
-      }
-    ]
+        path: 'cart',
+      },
+      {
+        component: CheckoutComponent,
+        path: 'checkout',
+      },
+    ],
   },
   // {
   //   path: '**',
@@ -37,6 +42,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
