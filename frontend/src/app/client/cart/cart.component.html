@@ -1,1 +1,38 @@
-<p>cart works!</p>
+<h1>Cart</h1>
+
+<p *ngIf="isEmpty()">
+  Your Cart is Empty
+</p>
+
+<ng-container *ngIf="!isEmpty()">
+  <mat-list role="list" *ngIf="!isEmpty()">
+    <mat-list-item role="listitem" *ngFor="let elem of getTransformedData()">
+      <p>
+        {{elem.name}} - x{{elem.count}} - {{elem.price}} Ft
+      </p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+
+  <mat-list role="list">
+    <mat-list-item role="listitem">
+      <p class="text-secondary">
+        Pizza Sum Price: {{getFullPrice()}}Ft
+      </p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <p class="text-secondary">
+        Shipping: 1500Ft
+      </p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item role="listitem">
+      <b>
+        Full Price: {{getFullPrice() + 1500}}Ft
+      </b>
+    </mat-list-item>
+  </mat-list>
+
+  <a mat-button routerLink="/checkout">Go To Checkout</a>
+</ng-container>
