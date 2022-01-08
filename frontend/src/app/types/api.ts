@@ -11,3 +11,6 @@ export type ApiPizza = {
 } & WithTimeStamps;
 
 export type GetPizzasResponse = ApiPizza[];
+
+export type GetPizzaResponse = ApiPizza;
+

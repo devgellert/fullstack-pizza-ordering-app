@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {AdminComponent} from "./admin/admin.component";
 import {ClientComponent} from "./client/client.component";
 import {MenuComponent} from "./client/menu/menu.component";
+import {PizzaViewComponent} from "./client/pizza-view/pizza-view.component";
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         component: MenuComponent,
         path: 'menu'
+      },
+      {
+        component: PizzaViewComponent,
+        path: 'menu/:id'
       }
     ]
   },

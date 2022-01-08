@@ -13,6 +13,9 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from "@angular/material/card";
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { PizzaViewComponent } from './client/pizza-view/pizza-view.component';
+import {MatListModule} from "@angular/material/list";
+import {MatMenuModule} from "@angular/material/menu";
 
 
 
@@ -22,6 +25,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     AdminComponent,
     ClientComponent,
     MenuComponent,
+    PizzaViewComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,9 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatButtonModule,
     MatCardModule,
     MatGridListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatListModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

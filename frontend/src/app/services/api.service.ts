@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {GetPizzasResponse} from "../types/api";
+import {GetPizzaResponse, GetPizzasResponse} from "../types/api";
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +14,25 @@ export class ApiService {
     const route = '/api/pizza/';
     const observable = this.http.get(ApiService.BASE_URL + route);
 
-    const response: Promise<GetPizzasResponse> = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       observable.subscribe({
         next: (value) => {
           resolve(value as GetPizzasResponse);
         }
       });
     });
+  }
 
-    return await response;
+  getPizza(pizzaId: number): Promise<GetPizzaResponse> {
+    const route = `/api/pizza/${pizzaId}`;
+    const observable = this.http.get(ApiService.BASE_URL + route);
+
+    return new Promise((resolve) => {
+      observable.subscribe({
+        next: (value) => {
+          resolve(value as GetPizzaResponse);
+        }
+      });
+    });
   }
 }
