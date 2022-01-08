@@ -38,4 +38,10 @@ export class PizzaViewComponent implements OnInit {
   getPizzaCountInCart() {
     return this.cartService.getPizzaCountInCart(this.getPizza()?.id as number);
   }
+
+  getAddToCartButtonText(pizzaId: number) {
+    return this.isPizzaInCart()
+      ? `Add To Cart (x${this.getPizzaCountInCart()})`
+      : 'Add To Cart';
+  }
 }

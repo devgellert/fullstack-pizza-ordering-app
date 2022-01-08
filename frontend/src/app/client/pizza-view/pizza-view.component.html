@@ -3,21 +3,33 @@
 <div *ngIf="getPizza() !== null">
   <div class="buttons-wrap">
     <a mat-button routerLink="/menu">Back To Menu</a>
+
     <button mat-button (click)="addToCart()">
-      {{
-        isPizzaInCart()
-          ? "Add One More (x" + getPizzaCountInCart() + ")"
-          : "Add To Cart"
-      }}
+      {{ getAddToCartButtonText($any(getPizza()?.id)) }}
     </button>
   </div>
+
+  <h1>{{ getPizza()?.name }}</h1>
+
   <div>
     <img
       src="https://image-api.nosalty.hu/nosalty/images/recipes/3q/5Z/csiperkegombas-rukkolas-pizza.jpeg?w=640&h=480&fit=crop&s=f3c9386de15ba28413508e7cd57422ff"
       alt=""
     />
   </div>
-  <h1>{{ getPizza()?.name }}</h1>
+
+  <h2>Details</h2>
+  <mat-list role="list">
+    <mat-list-item role="listitem">
+      <b>Price:</b>
+      <span> {{ getPizza()?.price }}Ft</span>
+    </mat-list-item>
+    <mat-list-item role="listitem">
+      <b>Size:</b>
+      <span> {{ getPizza()?.size }}cm</span>
+    </mat-list-item>
+  </mat-list>
+
   <h2>Ingredients</h2>
   <mat-list role="list">
     <mat-list-item role="listitem">Item 1</mat-list-item>

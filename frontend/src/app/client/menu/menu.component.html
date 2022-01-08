@@ -1,4 +1,4 @@
-<h1>Pizzas</h1>
+<h1>Menu</h1>
 
 <mat-spinner *ngIf="getPizzas() === null"></mat-spinner>
 
@@ -12,23 +12,28 @@
     </mat-card-header>
     <img
       mat-card-image
-      [src]="getPizzaImage()"
+      src="https://amrestcdn.azureedge.net/ph-web-ordering/PH%20HU/Images/PH%20Product%20pictures_comp/2019_10_PH_mobilapp_kepek_olasz_500x500.jpg"
       [style.object-fit]="'cover'"
       [style.object-position]="'top center'"
       height="500"
+      alt="pizza.name"
     />
     <mat-card-content>
+      <p>Price: {{ pizza.price }}Ft</p>
       <p>Ingredients: n/a</p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button (click)="addToCart(pizza.id)">
-        {{
-          isPizzaInCart(pizza.id)
-            ? "Add One More (x" + getPizzaCount(pizza.id) + ")"
-            : "Add To Cart"
-        }}
-      </button>
       <a mat-button [routerLink]="'/menu/' + pizza.id">See Details</a>
+      <button
+        mat-button
+        [disabled]="!isPizzaInCart(pizza.id)"
+        (click)="removeFromCart(pizza.id)"
+      >
+        Remove From Cart
+      </button>
+      <button mat-button (click)="addToCart(pizza.id)">
+        {{ getAddToCartButtonText(pizza.id) }}
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

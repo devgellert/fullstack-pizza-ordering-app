@@ -15,26 +15,33 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuService.hydratePizzas();
-    console.log(this.getPizzas());
   }
 
   getPizzas() {
     return this.menuService.getPizzas();
   }
 
-  getPizzaImage() {
-    return this.menuService.getRandomPizzaPicture();
-  }
-
   addToCart(pizzaId: number) {
     this.cartService.addPizzaId(pizzaId);
   }
 
-  isPizzaInCart(pizzaId: number) {
-    return this.cartService.isPizzaInCart(pizzaId);
+  removeFromCart(pizzaId: number) {
+    this.cartService.removePizzaId(pizzaId);
   }
 
-  getPizzaCount(pizzaId: number) {
-    return this.cartService.getPizzaCountInCart(pizzaId);
+  getAddToCartButtonText(pizzaId: number) {
+    const isPizzaInCart = this.isPizzaInCart(pizzaId);
+
+    if (!isPizzaInCart) {
+      return 'Add To Cart';
+    }
+
+    const pizzaCount = this.cartService.getPizzaCountInCart(pizzaId);
+
+    return `Add To Cart (x${pizzaCount})`;
+  }
+
+  isPizzaInCart(pizzaId: number) {
+    return this.cartService.isPizzaInCart(pizzaId);
   }
 }
