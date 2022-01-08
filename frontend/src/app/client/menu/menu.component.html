@@ -17,7 +17,12 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>Add To Cart</button>
+      <button
+        mat-button
+        (click)="addToCart(pizza.id)"
+      >
+        {{isPizzaInCart(pizza.id) ? 'Add One More (x' + getPizzaCount(pizza.id) + ')' : 'Add To Cart'}}
+      </button>
       <a mat-button [routerLink]="'/menu/'+pizza.id">See Details</a>
     </mat-card-actions>
   </mat-card>

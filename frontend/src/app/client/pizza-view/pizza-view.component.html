@@ -3,7 +3,12 @@
 <div *ngIf="getPizza() !== null">
   <div class="buttons-wrap">
     <a mat-button routerLink="/menu">Back To Menu</a>
-    <button mat-button>Add To Cart</button>
+    <button
+      mat-button
+      (click)="addToCart()"
+    >
+      {{isPizzaInCart() ? 'Add One More (x' + getPizzaCountInCart() + ')' : 'Add To Cart'}}
+    </button>
   </div>
   <div>
     <img

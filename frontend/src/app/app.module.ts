@@ -16,6 +16,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { PizzaViewComponent } from './client/pizza-view/pizza-view.component';
 import {MatListModule} from "@angular/material/list";
 import {MatMenuModule} from "@angular/material/menu";
+import { CartComponent } from './client/cart/cart.component';
 
 
 
@@ -26,6 +27,7 @@ import {MatMenuModule} from "@angular/material/menu";
     ClientComponent,
     MenuComponent,
     PizzaViewComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
