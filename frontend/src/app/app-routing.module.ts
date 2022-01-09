@@ -6,6 +6,7 @@ import { PizzaViewComponent } from './client/pizza-view/pizza-view.component';
 import { CartComponent } from './client/cart/cart.component';
 import { CheckoutComponent } from './client/checkout/checkout.component';
 import { OrdersComponent } from './admin/orders/orders.component';
+import { IngredientComponent } from './admin/ingredient/ingredient.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { OrderViewComponent } from './client/order-view/order-view.component';
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         component: OrdersComponent,
         path: 'orders',
+      },
+      {
+        component: IngredientComponent,
+        path: 'ingredient',
       },
       {
         component: AdminPizzasComponent,

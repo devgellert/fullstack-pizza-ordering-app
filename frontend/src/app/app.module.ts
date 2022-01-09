@@ -30,6 +30,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { OrderDetailsComponent } from './admin/order-details/order-details.component';
 import { OrderedPizzasComponent } from './admin/ordered-pizzas/ordered-pizzas.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { IngredientComponent } from './admin/ingredient/ingredient.component';
+import { IngredientEditorComponent } from './admin/ingredient-editor/ingredient-editor.component';
+import { IngredientCreatorComponent } from './admin/ingredient-creator/ingredient-creator.component';
+import { IngredientDeleterComponent } from './admin/ingredient-deleter/ingredient-deleter.component';
 import { AdminPizzasComponent } from './admin/admin-pizzas/admin-pizzas.component';
 import { PizzaListComponent } from './common/pizza-list/pizza-list.component';
 import { AdminPizzaEditComponent } from './admin/admin-pizza-edit/admin-pizza-edit.component';
@@ -48,6 +52,10 @@ import { AdminPizzaEditComponent } from './admin/admin-pizza-edit/admin-pizza-ed
     PageWrapComponent,
     OrderDetailsComponent,
     OrderedPizzasComponent,
+    IngredientComponent,
+    IngredientEditorComponent,
+    IngredientCreatorComponent,
+    IngredientDeleterComponent,
     AdminPizzasComponent,
     PizzaListComponent,
     AdminPizzaEditComponent,

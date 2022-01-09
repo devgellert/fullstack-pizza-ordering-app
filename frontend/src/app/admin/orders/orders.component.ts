@@ -18,7 +18,6 @@ export class OrdersComponent implements OnInit {
   }
 
   async onWatchPizzas(id: number | undefined){
-    console.log(id)
     const dialogRef = this.dialog.open(OrderedPizzasComponent,{
       width: '500px',
       data: id,
