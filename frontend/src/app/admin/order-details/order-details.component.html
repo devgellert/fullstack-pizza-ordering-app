@@ -21,23 +21,23 @@
 </div>
 
 <div>
-  <button id="watchPizzas" mat-button (click)="watch()" color="secondary">
+  <button id="watchPizzas" mat-raised-button (click)="watch()" color="primary">
     Food Details
   </button>
 </div>
 <div *ngIf="order.status === 'ORDERED' && order.id !== undefined">
-  <button mat-button color="secondary" (click)="accept(order.id)">
+  <button mat-raised-button color="primary" (click)="accept(order.id)">
     Accept
   </button>
 </div>
 <div *ngIf="order.status === 'ACCEPTED' && order.id !== undefined">
-  <button mat-button color="secondary" (click)="cook(order.id)">Cooked</button>
+  <button mat-raised-button color="primary" (click)="cook(order.id)">Cooked</button>
 </div>
 <div *ngIf="order.status === 'COOKED' && order.id !== undefined">
   <button
     [disabled]="!isUserCourier()"
-    mat-button
-    color="secondary"
+    mat-raised-button
+    color="primary"
     (click)="deliver(order.id)"
   >
     Delivered
