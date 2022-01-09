@@ -5,12 +5,22 @@ import { MenuComponent } from './client/menu/menu.component';
 import { PizzaViewComponent } from './client/pizza-view/pizza-view.component';
 import { CartComponent } from './client/cart/cart.component';
 import { CheckoutComponent } from './client/checkout/checkout.component';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './services/auth.guard';
 import { OrderViewComponent } from './client/order-view/order-view.component';
 
 const routes: Routes = [
   {
     component: AdminComponent,
     path: 'admin',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        component: OrdersComponent,
+        path: 'orders',
+      },
+    ],
   },
   {
     redirectTo: '/menu',
@@ -38,9 +48,14 @@ const routes: Routes = [
     path: 'order/:id',
   },
   {
+    component: LoginComponent,
+    path: 'login',
+  },
+  {
     path: '**',
     redirectTo: '/menu',
   },
+
 ];
 
 @NgModule({

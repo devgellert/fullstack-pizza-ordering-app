@@ -1,0 +1,19 @@
+<mat-spinner *ngIf="!orders">
+  Loading
+</mat-spinner>
+<mat-accordion *ngIf="orders">
+  <mat-expansion-panel *ngFor="let order of orders" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{order.destination}}</mat-panel-title>
+      <mat-panel-description >
+        <span class="example-spacer"></span>
+        <span class="status">{{order.status}}</span>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <app-order-details
+      [order]="order"
+      (watchPizzas)="onWatchPizzas(order.id)"
+    ></app-order-details>
+  </mat-expansion-panel>
+
+</mat-accordion>

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,9 +20,16 @@ import { CheckoutComponent } from './client/checkout/checkout.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { LoginComponent } from './login/login.component';
+import { AuthInterceptor } from './services/auth.interceptor';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { OrderViewComponent } from './client/order-view/order-view.component';
 import { PageWrapComponent } from './client/common/page-wrap/page-wrap.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { OrderDetailsComponent } from './admin/order-details/order-details.component';
+import { OrderedPizzasComponent } from './admin/ordered-pizzas/ordered-pizzas.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -32,8 +39,12 @@ import { PageWrapComponent } from './client/common/page-wrap/page-wrap.component
     PizzaViewComponent,
     CartComponent,
     CheckoutComponent,
+    OrdersComponent,
+    LoginComponent,
     OrderViewComponent,
     PageWrapComponent,
+    OrderDetailsComponent,
+    OrderedPizzasComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,8 +63,16 @@ import { PageWrapComponent } from './client/common/page-wrap/page-wrap.component
     MatInputModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    MatExpansionModule,
+    MatDialogModule
   ],
-  providers: [],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true,
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
