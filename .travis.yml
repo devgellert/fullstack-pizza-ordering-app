@@ -12,7 +12,7 @@ jobs:
           - vendor
       before_install: cd backend
       script: php artisan test
-
+#
 #    - stage: test
 #      language: node_js
 #      node_js: node
