@@ -10,6 +10,7 @@ export type ApiPizza = {
   name: string;
   price: number;
   size: number;
+  ingredients: ApiIngredients[];
 } & WithTimeStamps;
 
 export type GetPizzasResponse = ApiPizza[];
@@ -51,6 +52,11 @@ export type ApiOrder = {
   delivered_by: number;
   pizzas: ApiPizza[];
 };
+
+export type ApiIngredients = {
+  id: number;
+  name: string;
+} & WithTimeStamps;
 
 export type GetOrderResponse = ApiOrder;
 

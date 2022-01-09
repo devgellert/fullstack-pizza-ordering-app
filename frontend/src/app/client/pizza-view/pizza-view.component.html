@@ -22,20 +22,26 @@
     <h2>Details</h2>
     <mat-list role="list">
       <mat-list-item role="listitem">
-        <b>Price:</b>
-        <span> {{ getPizza()?.price }}Ft</span>
+        <p>
+          <b>Price:</b>
+          <span> {{ getPizza()?.price }}Ft</span>
+        </p>
       </mat-list-item>
       <mat-list-item role="listitem">
-        <b>Size:</b>
-        <span> {{ getPizza()?.size }}cm</span>
+        <p>
+          <b>Size:</b>
+          <span> {{ getPizza()?.size }}cm</span>
+        </p>
       </mat-list-item>
     </mat-list>
 
     <h2>Ingredients</h2>
     <mat-list role="list">
-      <mat-list-item role="listitem">Item 1</mat-list-item>
-      <mat-list-item role="listitem">Item 2</mat-list-item>
-      <mat-list-item role="listitem">Item 3</mat-list-item>
+      <mat-list-item
+        *ngFor="let ingredient of $any(getPizza()).ingredients"
+        role="listitem"
+        >{{ ingredient.name }}</mat-list-item
+      >
     </mat-list>
   </div>
 </app-page-wrap>

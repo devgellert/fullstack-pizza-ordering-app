@@ -20,8 +20,16 @@
         alt="pizza.name"
       />
       <mat-card-content>
-        <p>Price: {{ pizza.price }}Ft</p>
-        <p>Ingredients: n/a</p>
+        <p>
+          <b> Price: </b>
+          {{ pizza.price }}Ft
+        </p>
+        <p>
+          <b> Ingredients: </b>
+          <span *ngFor="let ingredient of pizza.ingredients; let i = index"
+            >{{ i !== 0 ? ", " : "" }}{{ ingredient.name }}</span
+          >
+        </p>
       </mat-card-content>
       <mat-card-actions>
         <a mat-button [routerLink]="['/menu/', pizza.id]">See Details</a>
