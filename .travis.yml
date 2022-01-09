@@ -3,4 +3,50 @@ env:
     secure: bURnVwDO02qRxhUI3bg2FeVookSbdEHXhiYjnRJDnVTMhj/7uReovFNczh9bPvZSAKyA4FYnDEYrmLQYK0OisY8g6b1A3NAb84JG/Xsguraar/nY/l7CUvdevqW532gTrx/mYUOxBWQK6/0hO36leHAp7qtNp8i8q/Bn5xVIu3EQfmwZyDFPRySkkOYHuppn606p0oM1TO/wUthbwXyTOb3yjbZPJAantz+zWlrLav9x4cvECk3U/NbtTZpXGXhWAXLCQUepTi2oX3ZZKd8A5vjjlfCNaGRITN8IxuThgrnZ3lEj75sMZbdFa8/zj9S0/VQozexc3TAtriVWo3JMIwHA8gmO13MsvYhblKGIuleZjYNiykBTYG7BDG0D5w0rAFYLCGiOq1qu/t1EEqt1pnjjiyHFuohNBwlTOXm4BtjaqijJc4PEBJDjOsaIhWRWoPI2ExmCGrPU6iPle2sA76mATs4M2vbc6ZWhe5eLuZEwaT3nTeEykl/FlEbg6GAywo1wwxM6m5gHM2hjstLuG18CL8MFuVq1d6hJzMM6Y0eyhfkPyVneWnU4EIoZg/2T3OY2yVvS5K4UKLGo/lM5eF3jsN2UOpBz+OT35KbhhnHwh4GV/3QQ2JNCGehWclROkQkOqE6rwTNggTJOPgyZWkRpFJox7x/enEOtN0vg+/g=
 
 jobs:
-  -
+  include:
+
+    - stage: test
+      language: php
+      cache:
+        directories:
+          - vendor
+      before_install: cd backend
+      script: php artisan test
+
+#    - stage: test
+#      language: node_js
+#      node_js: node
+#      addons:
+#        apt:
+#          sources:
+#            - google-chrome
+#          packages:
+#            - google-chrome-stable
+#      before_install: cd issue-tracker-client
+#      script: npm run test:ci
+
+#    - stage: deploy1
+#      language: node_js
+#      node_js: node
+#      before_install: cd issue-tracker-nest
+#      install: skip
+#      script: skip
+#      deploy:
+#        provider: heroku
+#        api_key:
+#          secure: "Yt18zJnW1hvG2U4ayjCmMyKpE/tswD2a1ie42GfhnSltARgpeaLzlUA5JwRcQ3aWxU2Bzjf6CLSNhmRxysWlaXnP7ICQfjcmVJFRDB8huVTNo/OoeaoP0hfXuxscIZNJkiLdkoqxIYPwtlSZL1lu/qe0Cd6cI6AJf8HbNz5PXIWVTgKaMcewNqsYOlGZ9fUXjCRWcLgBCL84axgJZFUQYoe5poAViRHDd51vL/9v1ZpR2huAq8nkBM+i3riOJY/BFt1rnXtAuoYug1mloWYxhfMQAZCuiUw+p9x6cz2TjkQGBXAVzLyMWOkA5gQRC4NBIb3iVZwYYd3AGUtUEQL05D3IUJLRQhTzDRxuAbqgsjsrHFeKWiq+biD5rIyk3bfkuvxsDDw4EE5cTdbeKRkphPExoXuwMXbxiUZge4YLggEz7X5Uwm6c88d4uYeQtm1XzmPuel87rFjEAs1DqnzTxTS0hyrgVqodFnQLaLP3B+99kcm9jhYBLMGg9e+hVkM4QeU8KJatN4a03YeeTYVva7Csd6MwgwQjIUtBcQQ7lsHta66gwq8J4PtkN6aSOYAGPZDh4NuC7BIZ8MZ18803ceTf0Pw02Srn+qeilQdLMY4DeuZeh2KmaQ6VlaRGIbrpWPZL6oyF2VwS86mG24sB02L2Jvg3DWIlEDMua9Dzqrg="
+#        app: fullstack-21-22-1-ts
+#        on: main
+#
+#    - stage: deploy2
+#      language: node_js
+#      node_js: node
+#      before_install: cd issue-tracker-client
+#      script: skip
+#      after_success: npm run build
+#      deploy:
+#        provider: heroku
+#        api_key:
+#          secure: "Yt18zJnW1hvG2U4ayjCmMyKpE/tswD2a1ie42GfhnSltARgpeaLzlUA5JwRcQ3aWxU2Bzjf6CLSNhmRxysWlaXnP7ICQfjcmVJFRDB8huVTNo/OoeaoP0hfXuxscIZNJkiLdkoqxIYPwtlSZL1lu/qe0Cd6cI6AJf8HbNz5PXIWVTgKaMcewNqsYOlGZ9fUXjCRWcLgBCL84axgJZFUQYoe5poAViRHDd51vL/9v1ZpR2huAq8nkBM+i3riOJY/BFt1rnXtAuoYug1mloWYxhfMQAZCuiUw+p9x6cz2TjkQGBXAVzLyMWOkA5gQRC4NBIb3iVZwYYd3AGUtUEQL05D3IUJLRQhTzDRxuAbqgsjsrHFeKWiq+biD5rIyk3bfkuvxsDDw4EE5cTdbeKRkphPExoXuwMXbxiUZge4YLggEz7X5Uwm6c88d4uYeQtm1XzmPuel87rFjEAs1DqnzTxTS0hyrgVqodFnQLaLP3B+99kcm9jhYBLMGg9e+hVkM4QeU8KJatN4a03YeeTYVva7Csd6MwgwQjIUtBcQQ7lsHta66gwq8J4PtkN6aSOYAGPZDh4NuC7BIZ8MZ18803ceTf0Pw02Srn+qeilQdLMY4DeuZeh2KmaQ6VlaRGIbrpWPZL6oyF2VwS86mG24sB02L2Jvg3DWIlEDMua9Dzqrg="
+#        app: fullstack-21-22-1-client
+#        on: main
