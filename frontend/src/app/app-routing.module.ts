@@ -10,6 +10,8 @@ import { IngredientComponent } from './admin/ingredient/ingredient.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { OrderViewComponent } from './client/order-view/order-view.component';
+import { AdminPizzasComponent } from './admin/admin-pizzas/admin-pizzas.component';
+import { AdminPizzaEditComponent } from './admin/admin-pizza-edit/admin-pizza-edit.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,14 @@ const routes: Routes = [
       {
         component: IngredientComponent,
         path: 'ingredient',
+      },
+      {
+        component: AdminPizzasComponent,
+        path: 'pizzas',
+      },
+      {
+        component: AdminPizzaEditComponent,
+        path: 'pizzas/:id/edit',
       },
     ],
   },
@@ -60,7 +70,6 @@ const routes: Routes = [
     path: '**',
     redirectTo: '/menu',
   },
-
 ];
 
 @NgModule({

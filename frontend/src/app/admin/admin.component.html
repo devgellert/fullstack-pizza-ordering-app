@@ -4,13 +4,18 @@
     <div>
       <a mat-button routerLink="/admin/orders">Orders</a>
       <a mat-button routerLink="/admin/ingredient">Ingredients</a>
-      <a mat-button routerLink="/">Pizzas</a>
+      <a mat-button routerLink="/admin/pizzas">Pizzas</a>
+      <a mat-button routerLink="/">Ingredients</a>
       <span>
-        <button *ngIf="authService.isLoggedIn" mat-button class="logout" (click)="logout()">
+        <button
+          *ngIf="authService.isLoggedIn"
+          mat-button
+          class="logout"
+          (click)="logout()"
+        >
           <span>Logout</span>
         </button>
       </span>
-
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

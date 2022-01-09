@@ -1,9 +1,7 @@
 <h1 mat-dialog-title>Pizzas</h1>
-<mat-spinner *ngIf="!order">
-  Loading
-</mat-spinner>
+<mat-spinner *ngIf="!order"> Loading </mat-spinner>
 <div mat-dialog-content *ngIf="order">
   <div *ngFor="let pizza of order.pizzas">
-    <span>{{$any(pizza)?.pivot?.count}}x {{pizza.name}}</span>
+    <span> {{ pizza.name }}</span>
   </div>
 </div>

@@ -34,6 +34,9 @@ import { IngredientComponent } from './admin/ingredient/ingredient.component';
 import { IngredientEditorComponent } from './admin/ingredient-editor/ingredient-editor.component';
 import { IngredientCreatorComponent } from './admin/ingredient-creator/ingredient-creator.component';
 import { IngredientDeleterComponent } from './admin/ingredient-deleter/ingredient-deleter.component';
+import { AdminPizzasComponent } from './admin/admin-pizzas/admin-pizzas.component';
+import { PizzaListComponent } from './common/pizza-list/pizza-list.component';
+import { AdminPizzaEditComponent } from './admin/admin-pizza-edit/admin-pizza-edit.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,9 @@ import { IngredientDeleterComponent } from './admin/ingredient-deleter/ingredien
     IngredientEditorComponent,
     IngredientCreatorComponent,
     IngredientDeleterComponent,
+    AdminPizzasComponent,
+    PizzaListComponent,
+    AdminPizzaEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,14 +78,14 @@ import { IngredientDeleterComponent } from './admin/ingredient-deleter/ingredien
     ReactiveFormsModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true,
-    }
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
