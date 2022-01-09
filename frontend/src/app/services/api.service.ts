@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
+  GetOrderResponse,
   GetPizzaResponse,
   GetPizzasResponse,
   PostOrderBody,
@@ -64,5 +65,10 @@ export class ApiService {
     const errorMessages: string[] = [];
     Object.values(errors).forEach((e) => errorMessages.push(e[0]));
     return errorMessages;
+  }
+
+  getOrder(orderId: number): Promise<GetOrderResponse> {
+    const route = `/api/order/${orderId}`;
+    return this.withPromiseWrap(this.http.get(ApiService.BASE_URL + route));
   }
 }

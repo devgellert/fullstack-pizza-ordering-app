@@ -1,0 +1,24 @@
+<h1>Order Details</h1>
+
+<ng-container *ngIf="getOrder() !== null">
+  <h2>Status: {{ getOrder()?.status }}</h2>
+
+  <p>Ordered At: {{ $any(getOrder()).created_at | date }}</p>
+  <p *ngIf="!!getOrder()?.accepted_at">
+    Restaurant Accepted At: {{ getOrder()?.accepted_at | date }}
+  </p>
+  <p *ngIf="!!getOrder()?.cooked_at">
+    Cooked At: {{ getOrder()?.cooked_at | date }}
+  </p>
+  <p *ngIf="!!getOrder()?.delivered_at">
+    Delivered At: {{ getOrder()?.delivered_at | date }}
+  </p>
+  <h2>Order Items:</h2>
+  <mat-list role="list">
+    <mat-list-item *ngFor="let pizza of getOrder()?.pizzas" role="listitem">{{
+      pizza.name
+    }}</mat-list-item>
+  </mat-list>
+</ng-container>
+
+<p *ngIf="getOrder() === null">Order does not exist.</p>

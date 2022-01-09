@@ -6,6 +6,7 @@ import { MenuComponent } from './client/menu/menu.component';
 import { PizzaViewComponent } from './client/pizza-view/pizza-view.component';
 import { CartComponent } from './client/cart/cart.component';
 import { CheckoutComponent } from './client/checkout/checkout.component';
+import { OrderViewComponent } from './client/order-view/order-view.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         component: CheckoutComponent,
         path: 'checkout',
+      },
+      {
+        component: OrderViewComponent,
+        path: 'order/:id',
       },
     ],
   },

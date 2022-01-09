@@ -22,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { OrderViewComponent } from './client/order-view/order-view.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     PizzaViewComponent,
     CartComponent,
     CheckoutComponent,
+    OrderViewComponent,
   ],
   imports: [
     BrowserModule,

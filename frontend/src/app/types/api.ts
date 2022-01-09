@@ -37,4 +37,20 @@ export type PostOrderResponse = {
   delivered_by?: number;
 };
 
+export type ApiOrder = {
+  status: ApiOrderStatus;
+  destination: string;
+  customer_name: string;
+  customer_phone: string;
+  accepted_at: string;
+  cooked_at: string;
+  delivered_at: string;
+  accepted_by: number;
+  cooked_by: number;
+  delivered_by: number;
+  pizzas: ApiPizza[];
+};
+
+export type GetOrderResponse = ApiOrder;
+
 export type ApiOrderStatus = 'ORDERED';
