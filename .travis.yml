@@ -17,11 +17,3 @@ jobs:
 
       script:
         - php artisan test
-
-#      deploy:
-#        skip_cleanup: true
-#        provider: heroku
-#        api_key:
-#          secure: <SECURE HEROKU KEY KERE>
-#        app: fswp-java-restapi-issuetracker
-#        on: main
