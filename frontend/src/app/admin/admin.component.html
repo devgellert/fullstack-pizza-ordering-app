@@ -5,6 +5,9 @@
       <a mat-button routerLink="/admin/orders">Orders</a>
       <a mat-button routerLink="/">Pizzas</a>
       <a mat-button routerLink="/">Ingredients</a>
+      <button *ngIf="authService.isLoggedIn" mat-button (click)="logout()">
+        <span>Logout</span>
+      </button>
     </div>
   </mat-toolbar-row>
 </mat-toolbar>

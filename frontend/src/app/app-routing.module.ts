@@ -48,13 +48,14 @@ const routes: Routes = [
     path: 'order/:id',
   },
   {
+    component: LoginComponent,
+    path: 'login',
+  },
+  {
     path: '**',
     redirectTo: '/menu',
   },
-  {
-    component: LoginComponent,
-    path: 'login',
-  }
+
 ];
 
 @NgModule({

@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     }
 
     await this.authService.login(this.loginForm.value);
-    this.router.navigate(['/admin']);
+    this.router.navigate(['/','admin']);
   }
 
 }
