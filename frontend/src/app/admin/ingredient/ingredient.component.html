@@ -1,15 +1,17 @@
-<button mat-raised-button color="primary" (click)="onCreateIngredient()">New</button>
+
 <mat-spinner *ngIf="!ingredients">
   Loading
 </mat-spinner>
 
-<mat-accordion *ngIf="ingredients">
-  <mat-expansion-panel *ngFor="let ingredient of ingredients" hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>{{ingredient.name}}</mat-panel-title>
-    </mat-expansion-panel-header>
-    <button mat-raised-button color="primary" (click)="onEditIngredient(ingredient)">Edit</button>
-    <button mat-raised-button color="warn" (click)="onDeleteIngredient(ingredient)">Delete</button>
-  </mat-expansion-panel>
-
-</mat-accordion>
+<div class="content">
+  <button mat-raised-button color="primary" (click)="onCreateIngredient()">New</button>
+  <mat-accordion *ngIf="ingredients">
+    <mat-expansion-panel *ngFor="let ingredient of ingredients" hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>{{ingredient.name}}</mat-panel-title>
+      </mat-expansion-panel-header>
+      <button mat-raised-button color="primary" (click)="onEditIngredient(ingredient)">Edit</button>
+      <button mat-raised-button color="warn" (click)="onDeleteIngredient(ingredient)">Delete</button>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
