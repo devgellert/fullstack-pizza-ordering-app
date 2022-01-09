@@ -1,35 +1,45 @@
 <div>
-  <p>Order ID: {{order.id}}</p>
+  <p>Order ID: {{ order.id }}</p>
 </div>
 <div>
-  <p>Customer Name: {{order.customer_name}}</p>
+  <p>Customer Name: {{ order.customer_name }}</p>
 </div>
 <div>
-  <p>Phone: {{order.customer_phone}}</p>
+  <p>Phone: {{ order.customer_phone }}</p>
 </div>
-<div >
-  <p>Ordered at: {{order.created_at}}</p>
+<div>
+  <p>Ordered at: {{ order.created_at }}</p>
 </div>
 <div *ngIf="order.accepted_at">
-  <p>Accepted at: {{order.accepted_at}}</p>
+  <p>Accepted at: {{ order.accepted_at }}</p>
 </div>
 <div *ngIf="order.cooked_at">
-  <p>Cooked at: {{order.cooked_at}}</p>
+  <p>Cooked at: {{ order.cooked_at }}</p>
 </div>
 <div *ngIf="order.delivered_at">
-  <p>Delivered at: {{order.cooked_at}}</p>
+  <p>Delivered at: {{ order.cooked_at }}</p>
 </div>
 
 <div>
-  <button id="watchPizzas" mat-button (click)="watch()" color="secondary">Food Details</button>
+  <button id="watchPizzas" mat-button (click)="watch()" color="secondary">
+    Food Details
+  </button>
 </div>
 <div *ngIf="order.status === 'ORDERED' && order.id !== undefined">
-  <button mat-button color="secondary" (click)="accept(order.id)">Accept</button>
+  <button mat-button color="secondary" (click)="accept(order.id)">
+    Accept
+  </button>
 </div>
 <div *ngIf="order.status === 'ACCEPTED' && order.id !== undefined">
   <button mat-button color="secondary" (click)="cook(order.id)">Cooked</button>
 </div>
 <div *ngIf="order.status === 'COOKED' && order.id !== undefined">
-  <button mat-button color="secondary" (click)="deliver(order.id)">Delivered</button>
+  <button
+    [disabled]="!isUserCourier()"
+    mat-button
+    color="secondary"
+    (click)="deliver(order.id)"
+  >
+    Delivered
+  </button>
 </div>
-

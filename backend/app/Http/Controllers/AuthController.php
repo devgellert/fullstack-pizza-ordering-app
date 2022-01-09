@@ -40,7 +40,8 @@ class AuthController extends Controller
 
     private function createTokenView(string $token) {
         return [
-            "token" => $token
+            "token" => $token,
+            'isCourier' => auth()->user()->is_courier ? true : false
         ];
     }
 }
