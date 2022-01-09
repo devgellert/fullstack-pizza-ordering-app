@@ -3,6 +3,8 @@ import { ApiService } from './api.service';
 import { CreateOrderInputData, PizzaForOrderCreation } from '../types/order';
 import { CartService } from './cart.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { countBy, forEach, uniq } from 'lodash';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +14,8 @@ export class CheckoutService {
 
   constructor(
     private apiService: ApiService,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   async createOrder(inputData: CreateOrderInputData) {
@@ -23,13 +26,20 @@ export class CheckoutService {
     }`;
 
     try {
+      console.log({
+        address,
+        phone: inputData.phone,
+        name: inputData.name,
+        pizzas: this.getAndTransformPizzasForOrderCreation(),
+      });
       const order = await this.apiService.postOrder({
         address,
         phone: inputData.phone,
         name: inputData.name,
         pizzas: this.getAndTransformPizzasForOrderCreation(),
       });
-      console.log('order', order);
+
+      await this.router.navigate(['/order', order.id]);
     } catch (response) {
       this.errorMessages = this.apiService.getErrorMessagesFromResponse(
         response as HttpErrorResponse
@@ -42,13 +52,22 @@ export class CheckoutService {
 
   private getAndTransformPizzasForOrderCreation() {
     const pizzaIds = this.cartService.getCartPizzaIds();
+    const uniqueIds = uniq(pizzaIds);
+
     const result: PizzaForOrderCreation[] = [];
-    pizzaIds.forEach((id) => {
-      const elem = result.find((elem) => elem.id === id);
-      if (elem) {
-        elem.piece += 1;
-      }
+
+    uniqueIds.forEach((id) => {
+      let count = 0;
+
+      forEach(pizzaIds, (id2) => {
+        if (id2 === id) {
+          count++;
+        }
+      });
+
+      result.push({ id, piece: count });
     });
+
     return result;
   }
 }

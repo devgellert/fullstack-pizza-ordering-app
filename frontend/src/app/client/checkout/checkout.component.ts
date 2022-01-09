@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CheckoutService } from '../../services/checkout.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-checkout',
@@ -8,7 +9,10 @@ import { CheckoutService } from '../../services/checkout.service';
   styleUrls: ['./checkout.component.css'],
 })
 export class CheckoutComponent {
-  constructor(private checkoutService: CheckoutService) {}
+  constructor(
+    private checkoutService: CheckoutService,
+    private cartService: CartService
+  ) {}
 
   addressFormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -29,13 +33,14 @@ export class CheckoutComponent {
     }),
   });
 
-  submitForm() {
+  async submitForm() {
     if (this.addressFormGroup.invalid) {
-      console.log('invalid');
       return;
     }
 
-    this.checkoutService.createOrder(this.addressFormGroup.getRawValue());
+    await this.checkoutService.createOrder(this.addressFormGroup.getRawValue());
+
+    this.cartService.dropCart();
   }
 
   getErrorMessages() {

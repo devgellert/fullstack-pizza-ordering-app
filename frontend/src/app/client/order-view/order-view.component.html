@@ -16,9 +16,9 @@
     </p>
     <h2>Order Items:</h2>
     <mat-list role="list">
-      <mat-list-item *ngFor="let pizza of getOrder()?.pizzas" role="listitem">{{
-        pizza.name
-      }}</mat-list-item>
+      <mat-list-item *ngFor="let pizza of getOrder()?.pizzas" role="listitem"
+        >{{ pizza.name }} - x{{ $any(pizza)?.pivot?.count }}</mat-list-item
+      >
     </mat-list>
   </ng-container>
 

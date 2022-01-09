@@ -38,6 +38,7 @@ export type PostOrderResponse = {
 };
 
 export type ApiOrder = {
+  id: number;
   status: ApiOrderStatus;
   destination: string;
   customer_name: string;

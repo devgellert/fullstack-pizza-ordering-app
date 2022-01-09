@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
+  ApiOrder,
   GetOrderResponse,
   GetPizzaResponse,
   GetPizzasResponse,
@@ -47,13 +48,13 @@ export class ApiService {
     });
   }
 
-  postOrder(data: PostOrderData) {
+  postOrder(data: PostOrderData): Promise<ApiOrder> {
     const route = '/api/order/create';
     const body: PostOrderBody = {
       destination: data.address,
       customer_name: data.name,
       customer_phone: data.phone,
-      pizzas: [],
+      pizzas: data.pizzas,
     };
     return this.withPromiseWrap(
       this.http.post(ApiService.BASE_URL + route, body)
