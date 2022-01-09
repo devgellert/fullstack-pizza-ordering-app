@@ -1,7 +1,7 @@
 <app-page-wrap>
-  <mat-spinner *ngIf="getPizza() === null"></mat-spinner>
+  <mat-spinner *ngIf="isLoading()"></mat-spinner>
 
-  <div *ngIf="getPizza() !== null">
+  <div *ngIf="!isLoading()">
     <div class="buttons-wrap">
       <a mat-button routerLink="/menu">Back To Menu</a>
 
