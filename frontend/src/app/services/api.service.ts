@@ -79,11 +79,17 @@ export class ApiService {
     name: string;
     size: number;
     price: number;
+    ingredient: number[];
   }): Promise<{}> {
     const route = `/api/pizza/update/${data.id}`;
     const body = omit(data, ['id']);
     return this.withPromiseWrap(
       this.http.patch(ApiService.BASE_URL + route, body)
     );
+  }
+
+  async getIngredients() {
+    const route = `/api/ingredient`;
+    return this.withPromiseWrap(this.http.get(ApiService.BASE_URL + route));
   }
 }

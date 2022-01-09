@@ -1,6 +1,8 @@
 <mat-spinner *ngIf="isLoading()"></mat-spinner>
 
 <form *ngIf="!isLoading()" [formGroup]="pizzaFormGroup" (ngSubmit)="onSubmit()">
+  <h2>Pizza Details</h2>
+
   <mat-form-field appearance="outline">
     <mat-label>Name</mat-label>
     <input formControlName="name" name="name" matInput />
@@ -21,6 +23,21 @@
       min="0"
     />
   </mat-form-field>
+
+  <h2>Chose the ingredients from the list</h2>
+
+  <ul *ngIf="getIngredients() !== null">
+    <li
+      class="clickable"
+      *ngFor="let ingredient of getIngredients()"
+      (click)="toggleIngredient(ingredient.id)"
+    >
+      <b *ngIf="isIngredientActive(ingredient.id)">{{ ingredient.name }}</b>
+      <span *ngIf="!isIngredientActive(ingredient.id)">{{
+        ingredient.name
+      }}</span>
+    </li>
+  </ul>
 
   <div>
     <button mat-raised-button color="primary">Update</button>

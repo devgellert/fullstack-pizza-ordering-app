@@ -28,6 +28,8 @@ export class AdminPizzaEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.pizzaViewService.hydrateIngredients();
+
     this.paramSubscription = this.router.params.subscribe((params) => {
       this.id = (params as any).id;
       this.pizzaViewService.hydratePizza(this.id as number).then(() => {
@@ -47,6 +49,7 @@ export class AdminPizzaEditComponent implements OnInit, OnDestroy {
     }
 
     this.pizzaViewService.dehydratePizza();
+    this.pizzaViewService.dehydrateIngredients();
   }
 
   isLoading() {
@@ -61,5 +64,17 @@ export class AdminPizzaEditComponent implements OnInit, OnDestroy {
     await this.pizzaViewService.updatePizza({ id: this.id, ...formValue });
 
     this.isUpdateInProgress = false;
+  }
+
+  getIngredients() {
+    return this.pizzaViewService.getIngredients();
+  }
+
+  isIngredientActive(ingredientId: number) {
+    return this.pizzaViewService.isInChosenIngredients(ingredientId);
+  }
+
+  toggleIngredient(ingredientId: number) {
+    return this.pizzaViewService.toggleIngredient(ingredientId);
   }
 }
