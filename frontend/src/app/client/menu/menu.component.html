@@ -1,39 +1,41 @@
-<h1>Menu</h1>
+<app-page-wrap>
+  <h1>Menu</h1>
 
-<mat-spinner *ngIf="getPizzas() === null"></mat-spinner>
+  <mat-spinner *ngIf="getPizzas() === null"></mat-spinner>
 
-<div class="menu-container" *ngIf="getPizzas() !== null">
-  <mat-card class="example-card" *ngFor="let pizza of getPizzas()">
-    <mat-card-header>
-      <mat-card-title>
-        {{ pizza.name }}
-      </mat-card-title>
-      <mat-card-subtitle>{{ pizza.size }}cm</mat-card-subtitle>
-    </mat-card-header>
-    <img
-      mat-card-image
-      src="https://amrestcdn.azureedge.net/ph-web-ordering/PH%20HU/Images/PH%20Product%20pictures_comp/2019_10_PH_mobilapp_kepek_olasz_500x500.jpg"
-      [style.object-fit]="'cover'"
-      [style.object-position]="'top center'"
-      height="500"
-      alt="pizza.name"
-    />
-    <mat-card-content>
-      <p>Price: {{ pizza.price }}Ft</p>
-      <p>Ingredients: n/a</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <a mat-button [routerLink]="'/menu/' + pizza.id">See Details</a>
-      <button
-        mat-button
-        [disabled]="!isPizzaInCart(pizza.id)"
-        (click)="removeFromCart(pizza.id)"
-      >
-        Remove From Cart
-      </button>
-      <button mat-button (click)="addToCart(pizza.id)">
-        {{ getAddToCartButtonText(pizza.id) }}
-      </button>
-    </mat-card-actions>
-  </mat-card>
-</div>
+  <div class="menu-container" *ngIf="getPizzas() !== null">
+    <mat-card class="example-card" *ngFor="let pizza of getPizzas()">
+      <mat-card-header>
+        <mat-card-title>
+          {{ pizza.name }}
+        </mat-card-title>
+        <mat-card-subtitle>{{ pizza.size }}cm</mat-card-subtitle>
+      </mat-card-header>
+      <img
+        mat-card-image
+        src="https://amrestcdn.azureedge.net/ph-web-ordering/PH%20HU/Images/PH%20Product%20pictures_comp/2019_10_PH_mobilapp_kepek_olasz_500x500.jpg"
+        [style.object-fit]="'cover'"
+        [style.object-position]="'top center'"
+        height="500"
+        alt="pizza.name"
+      />
+      <mat-card-content>
+        <p>Price: {{ pizza.price }}Ft</p>
+        <p>Ingredients: n/a</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button [routerLink]="['/menu/', pizza.id]">See Details</a>
+        <button
+          mat-button
+          [disabled]="!isPizzaInCart(pizza.id)"
+          (click)="removeFromCart(pizza.id)"
+        >
+          Remove From Cart
+        </button>
+        <button mat-button (click)="addToCart(pizza.id)">
+          {{ getAddToCartButtonText(pizza.id) }}
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</app-page-wrap>

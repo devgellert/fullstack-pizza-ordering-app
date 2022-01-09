@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
-import { ClientComponent } from './client/client.component';
 import { MenuComponent } from './client/menu/menu.component';
 import { PizzaViewComponent } from './client/pizza-view/pizza-view.component';
 import { CartComponent } from './client/cart/cart.component';
@@ -14,35 +13,34 @@ const routes: Routes = [
     path: 'admin',
   },
   {
-    component: ClientComponent,
+    redirectTo: '/menu',
     path: '',
-    children: [
-      {
-        component: MenuComponent,
-        path: 'menu',
-      },
-      {
-        component: PizzaViewComponent,
-        path: 'menu/:id',
-      },
-      {
-        component: CartComponent,
-        path: 'cart',
-      },
-      {
-        component: CheckoutComponent,
-        path: 'checkout',
-      },
-      {
-        component: OrderViewComponent,
-        path: 'order/:id',
-      },
-    ],
+    pathMatch: 'full',
   },
-  // {
-  //   path: '**',
-  //   redirectTo: ""
-  // }
+  {
+    component: MenuComponent,
+    path: 'menu',
+  },
+  {
+    component: PizzaViewComponent,
+    path: 'menu/:id',
+  },
+  {
+    component: CartComponent,
+    path: 'cart',
+  },
+  {
+    component: CheckoutComponent,
+    path: 'checkout',
+  },
+  {
+    component: OrderViewComponent,
+    path: 'order/:id',
+  },
+  {
+    path: '**',
+    redirectTo: '/menu',
+  },
 ];
 
 @NgModule({
