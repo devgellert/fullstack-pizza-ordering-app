@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PizzaViewService } from '../../services/pizza-view.service';
 import { CartService } from '../../services/cart.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pizza-view',
   templateUrl: './pizza-view.component.html',
   styleUrls: ['./pizza-view.component.css'],
 })
-export class PizzaViewComponent implements OnInit {
+export class PizzaViewComponent implements OnInit, OnDestroy {
+  private paramSubscriber: Subscription | null = null;
+
   constructor(
     private route: ActivatedRoute,
     private pizzaViewService: PizzaViewService,
@@ -16,11 +19,18 @@ export class PizzaViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((value) => {
+    this.paramSubscriber = this.route.params.subscribe((value) => {
       const id: number = (value as any).id;
-
       this.pizzaViewService.hydratePizza(id);
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.paramSubscriber !== null) {
+      this.paramSubscriber.unsubscribe();
+    }
+
+    this.pizzaViewService.dehydratePizza();
   }
 
   public getPizza() {
@@ -43,5 +53,9 @@ export class PizzaViewComponent implements OnInit {
     return this.isPizzaInCart()
       ? `Add To Cart (x${this.getPizzaCountInCart()})`
       : 'Add To Cart';
+  }
+
+  isLoading() {
+    return this.pizzaViewService.getPizza() === null;
   }
 }

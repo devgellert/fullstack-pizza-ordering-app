@@ -20,6 +20,10 @@ export class CartService {
     this.pizzaIds = this.pizzaIds.filter((id) => id !== pizzaId);
   }
 
+  dropCart() {
+    this.pizzaIds = [];
+  }
+
   isPizzaInCart(pizzaId: number) {
     return !!this.pizzaIds.find((id) => id === pizzaId);
   }

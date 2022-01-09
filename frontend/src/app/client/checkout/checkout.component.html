@@ -1,25 +1,125 @@
-<form class="example-form">
-  <table class="example-full-width" cellspacing="0">
-    <tr>
-      <td>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput [formControl]="name" />
-        </mat-form-field>
-      </td>
-      <td>
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Telephone</mat-label>
-          <input matInput />
-        </mat-form-field>
-      </td>
-    </tr>
-  </table>
+<app-page-wrap>
+  <form [formGroup]="addressFormGroup" (ngSubmit)="submitForm()">
+    <table class="example-full-width" cellspacing="0">
+      <h2>Customer Details</h2>
+      <tr>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" matInput />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input formControlName="phone" matInput />
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
 
-  <p>
-    <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Address</mat-label>
-      <input matInput />
-    </mat-form-field>
-  </p>
-</form>
+    <table formGroupName="address">
+      <h2>Address</h2>
+      <tr>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>City</mat-label>
+            <input
+              formControlName="city"
+              matInput
+              placeholder="Ex. San Francisco"
+            />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Postal Code</mat-label>
+            <input
+              formControlName="postalCode"
+              matInput
+              placeholder="Ex. 94105"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Country</mat-label>
+            <input
+              formControlName="country"
+              matInput
+              placeholder="Ex. Hungary"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Address Line 1</mat-label>
+            <textarea
+              formControlName="lineOne"
+              matInput
+              placeholder="Ex. 100 Main St"
+            ></textarea>
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Address Line 2 (optional)</mat-label>
+            <textarea formControlName="lineTwo" matInput></textarea>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <table formGroupName="payment">
+      <h2>Payment</h2>
+      <tr>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Card Number</mat-label>
+            <input
+              formControlName="cardNumber"
+              matInput
+              placeholder="Ex. San Francisco"
+            />
+          </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Invalidation Date</mat-label>
+            <input
+              formControlName="invalidationDate"
+              matInput
+              placeholder="Ex. 94105"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <mat-form-field appearance="fill">
+            <mat-label>Safety Code</mat-label>
+            <input
+              formControlName="safetyCode"
+              matInput
+              placeholder="Ex. 94105"
+            />
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td><button mat-button color="primary">Finish Order</button></td>
+      </tr>
+      <ng-container *ngIf="hasError">
+        <tr *ngFor="let error of getErrorMessages()">
+          <td>
+            <p class="text-danger">{{ error }}</p>
+          </td>
+        </tr>
+      </ng-container>
+    </table>
+  </form>
+</app-page-wrap>

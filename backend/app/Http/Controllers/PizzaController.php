@@ -18,7 +18,7 @@ class PizzaController extends Controller
      */
     public function index()
     {
-        return Pizza::all();
+        return Pizza::with('ingredients')->get();
     }
 
     /**

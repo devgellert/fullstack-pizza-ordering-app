@@ -9,7 +9,9 @@ export class CartComponent implements OnInit {
   constructor(private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.cartService.hydratePizzas();
+    if (this.cartService.getCartPizzaIds().length > 0) {
+      this.cartService.hydratePizzas();
+    }
   }
 
   getTransformedData(): CartTransformedData[] {

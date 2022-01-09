@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuService } from '../../services/menu.service';
 import { CartService } from '../../services/cart.service';
 
@@ -7,7 +7,7 @@ import { CartService } from '../../services/cart.service';
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
   constructor(
     private menuService: MenuService,
     private cartService: CartService
@@ -15,6 +15,10 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuService.hydratePizzas();
+  }
+
+  ngOnDestroy(): void {
+    this.menuService.dehydratePizzas();
   }
 
   getPizzas() {
