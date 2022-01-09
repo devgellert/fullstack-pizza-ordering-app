@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PizzaListComponent } from './pizza-list.component';
 
-describe('PizzaListComponent', () => {
+xdescribe('PizzaListComponent', () => {
   let component: PizzaListComponent;
   let fixture: ComponentFixture<PizzaListComponent>;
 

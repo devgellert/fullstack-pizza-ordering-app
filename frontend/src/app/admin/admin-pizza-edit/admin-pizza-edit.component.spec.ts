@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminPizzaEditComponent } from './admin-pizza-edit.component';
 
-describe('AdminPizzaEditComponent', () => {
+xdescribe('AdminPizzaEditComponent', () => {
   let component: AdminPizzaEditComponent;
   let fixture: ComponentFixture<AdminPizzaEditComponent>;
 
