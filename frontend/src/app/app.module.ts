@@ -26,6 +26,10 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { OrderViewComponent } from './client/order-view/order-view.component';
 import { PageWrapComponent } from './client/common/page-wrap/page-wrap.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { OrderDetailsComponent } from './admin/order-details/order-details.component';
+import { OrderedPizzasComponent } from './admin/ordered-pizzas/ordered-pizzas.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,8 @@ import { PageWrapComponent } from './client/common/page-wrap/page-wrap.component
     LoginComponent,
     OrderViewComponent,
     PageWrapComponent,
+    OrderDetailsComponent,
+    OrderedPizzasComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +63,8 @@ import { PageWrapComponent } from './client/common/page-wrap/page-wrap.component
     MatInputModule,
     ReactiveFormsModule,
     MatCheckboxModule,
+    MatExpansionModule,
+    MatDialogModule
   ],
   providers: [
     {
