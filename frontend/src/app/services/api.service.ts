@@ -9,6 +9,7 @@ import {
 } from '../types/api';
 import { Observable } from 'rxjs';
 import { PostOrderData } from '../types/order';
+import { omit } from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -71,5 +72,18 @@ export class ApiService {
   getOrder(orderId: number): Promise<GetOrderResponse> {
     const route = `/api/order/${orderId}`;
     return this.withPromiseWrap(this.http.get(ApiService.BASE_URL + route));
+  }
+
+  updatePizza(data: {
+    id: number;
+    name: string;
+    size: number;
+    price: number;
+  }): Promise<{}> {
+    const route = `/api/pizza/update/${data.id}`;
+    const body = omit(data, ['id']);
+    return this.withPromiseWrap(
+      this.http.patch(ApiService.BASE_URL + route, body)
+    );
   }
 }

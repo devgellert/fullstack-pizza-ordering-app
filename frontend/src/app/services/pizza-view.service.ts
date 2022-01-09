@@ -5,6 +5,7 @@ import { ApiPizza } from '../types/api';
 @Injectable({
   providedIn: 'root',
 })
+// TODO: rename service to a more general name
 export class PizzaViewService {
   private pizza: ApiPizza | null = null;
 
@@ -20,5 +21,9 @@ export class PizzaViewService {
 
   dehydratePizza() {
     this.pizza = null;
+  }
+
+  updatePizza(data: { id: number; name: string; size: number; price: number }) {
+    return this.apiService.updatePizza(data);
   }
 }
