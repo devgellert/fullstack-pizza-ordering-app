@@ -30,6 +30,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { OrderDetailsComponent } from './admin/order-details/order-details.component';
 import { OrderedPizzasComponent } from './admin/ordered-pizzas/ordered-pizzas.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { IngredientComponent } from './admin/ingredient/ingredient.component';
+import { IngredientEditorComponent } from './admin/ingredient-editor/ingredient-editor.component';
+import { IngredientCreatorComponent } from './admin/ingredient-creator/ingredient-creator.component';
+import { IngredientDeleterComponent } from './admin/ingredient-deleter/ingredient-deleter.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     PageWrapComponent,
     OrderDetailsComponent,
     OrderedPizzasComponent,
+    IngredientComponent,
+    IngredientEditorComponent,
+    IngredientCreatorComponent,
+    IngredientDeleterComponent,
   ],
   imports: [
     BrowserModule,
