@@ -6,11 +6,21 @@ import { MenuComponent } from './client/menu/menu.component';
 import { PizzaViewComponent } from './client/pizza-view/pizza-view.component';
 import { CartComponent } from './client/cart/cart.component';
 import { CheckoutComponent } from './client/checkout/checkout.component';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
   {
     component: AdminComponent,
     path: 'admin',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        component: OrdersComponent,
+        path: 'orders',
+      },
+    ],
   },
   {
     component: ClientComponent,
@@ -32,6 +42,10 @@ const routes: Routes = [
         component: CheckoutComponent,
         path: 'checkout',
       },
+      {
+        component: LoginComponent,
+        path: 'login',
+      }
     ],
   },
   // {
