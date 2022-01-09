@@ -9,6 +9,7 @@ import { OrdersComponent } from './admin/orders/orders.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './services/auth.guard';
 import { OrderViewComponent } from './client/order-view/order-view.component';
+import { AdminPizzasComponent } from './admin/admin-pizzas/admin-pizzas.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         component: OrdersComponent,
         path: 'orders',
+      },
+      {
+        component: AdminPizzasComponent,
+        path: 'pizzas',
       },
     ],
   },
@@ -55,7 +60,6 @@ const routes: Routes = [
     path: '**',
     redirectTo: '/menu',
   },
-
 ];
 
 @NgModule({

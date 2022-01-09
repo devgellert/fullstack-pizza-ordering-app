@@ -30,6 +30,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { OrderDetailsComponent } from './admin/order-details/order-details.component';
 import { OrderedPizzasComponent } from './admin/ordered-pizzas/ordered-pizzas.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AdminPizzasComponent } from './admin/admin-pizzas/admin-pizzas.component';
+import { PizzaListComponent } from './common/pizza-list/pizza-list.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     PageWrapComponent,
     OrderDetailsComponent,
     OrderedPizzasComponent,
+    AdminPizzasComponent,
+    PizzaListComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,14 +68,14 @@ import { MatDialogModule } from '@angular/material/dialog';
     ReactiveFormsModule,
     MatCheckboxModule,
     MatExpansionModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     {
-    provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi: true,
-    }
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
