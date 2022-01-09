@@ -1,0 +1,28 @@
+<mat-spinner *ngIf="isLoading()"></mat-spinner>
+
+<form *ngIf="!isLoading()" [formGroup]="pizzaFormGroup" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input formControlName="name" name="name" matInput />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Size</mat-label>
+    <input formControlName="size" name="size" matInput type="number" min="0" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Price</mat-label>
+    <input
+      formControlName="price"
+      name="price"
+      matInput
+      type="number"
+      min="0"
+    />
+  </mat-form-field>
+
+  <div>
+    <button mat-raised-button color="primary">Update</button>
+  </div>
+</form>

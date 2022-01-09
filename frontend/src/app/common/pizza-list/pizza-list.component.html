@@ -42,7 +42,9 @@
       </button>
     </mat-card-actions>
     <mat-card-actions *ngIf="isAdmin">
-      <a mat-button [routerLink]="['/admin/pizza/', pizza.id]">Edit</a>
+      <a mat-button [routerLink]="'/admin/pizzas/' + pizza.id + '/edit'"
+        >Edit</a
+      >
     </mat-card-actions>
   </mat-card>
 </div>

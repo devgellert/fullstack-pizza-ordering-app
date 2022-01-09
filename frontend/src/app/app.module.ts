@@ -32,6 +32,7 @@ import { OrderedPizzasComponent } from './admin/ordered-pizzas/ordered-pizzas.co
 import { MatDialogModule } from '@angular/material/dialog';
 import { AdminPizzasComponent } from './admin/admin-pizzas/admin-pizzas.component';
 import { PizzaListComponent } from './common/pizza-list/pizza-list.component';
+import { AdminPizzaEditComponent } from './admin/admin-pizza-edit/admin-pizza-edit.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { PizzaListComponent } from './common/pizza-list/pizza-list.component';
     OrderedPizzasComponent,
     AdminPizzasComponent,
     PizzaListComponent,
+    AdminPizzaEditComponent,
   ],
   imports: [
     BrowserModule,
