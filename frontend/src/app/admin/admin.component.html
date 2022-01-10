@@ -1,1 +1,23 @@
-<p>admin works!</p>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span class="title">Admin panel</span>
+    <div>
+      <a mat-button routerLink="/admin/orders">Orders</a>
+      <a mat-button routerLink="/admin/ingredient">Ingredients</a>
+      <a mat-button routerLink="/admin/pizzas">Pizzas</a>
+      <span>
+        <button
+          *ngIf="authService.isLoggedIn"
+          mat-button
+          class="logout"
+          (click)="logout()"
+        >
+          <span>Logout</span>
+        </button>
+      </span>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

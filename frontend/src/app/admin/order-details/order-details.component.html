@@ -1,0 +1,45 @@
+<div>
+  <p>Order ID: {{ order.id }}</p>
+</div>
+<div>
+  <p>Customer Name: {{ order.customer_name }}</p>
+</div>
+<div>
+  <p>Phone: {{ order.customer_phone }}</p>
+</div>
+<div>
+  <p>Ordered at: {{ order.created_at }}</p>
+</div>
+<div *ngIf="order.accepted_at">
+  <p>Accepted at: {{ order.accepted_at }}</p>
+</div>
+<div *ngIf="order.cooked_at">
+  <p>Cooked at: {{ order.cooked_at }}</p>
+</div>
+<div *ngIf="order.delivered_at">
+  <p>Delivered at: {{ order.cooked_at }}</p>
+</div>
+
+<div>
+  <button id="watchPizzas" mat-raised-button (click)="watch()" color="primary">
+    Food Details
+  </button>
+</div>
+<div *ngIf="order.status === 'ORDERED' && order.id !== undefined">
+  <button mat-raised-button color="primary" (click)="accept(order.id)">
+    Accept
+  </button>
+</div>
+<div *ngIf="order.status === 'ACCEPTED' && order.id !== undefined">
+  <button mat-raised-button color="primary" (click)="cook(order.id)">Cooked</button>
+</div>
+<div *ngIf="order.status === 'COOKED' && order.id !== undefined">
+  <button
+    [disabled]="!isUserCourier()"
+    mat-raised-button
+    color="primary"
+    (click)="deliver(order.id)"
+  >
+    Delivered
+  </button>
+</div>

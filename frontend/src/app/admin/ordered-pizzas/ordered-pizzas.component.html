@@ -1,0 +1,7 @@
+<h1 mat-dialog-title>Pizzas</h1>
+<mat-spinner *ngIf="!order"> Loading </mat-spinner>
+<div mat-dialog-content *ngIf="order">
+  <div *ngFor="let pizza of order.pizzas">
+    <span> {{ pizza.name }}</span>
+  </div>
+</div>

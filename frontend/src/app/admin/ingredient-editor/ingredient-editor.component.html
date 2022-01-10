@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Edit ingredient</h1>
+
+<form mat-dialo-content [formGroup]="ingredientForm" (ngSubmit)="submit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input
+    formControlName="name"
+    name="name"
+    matInput
+    placeholder="Oregano"
+    >
+    <mat-error *ngIf="name.invalid">
+      <span *ngIf="name.hasError('required')">This field is required</span>
+    </mat-error>
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-raised-button color="secondary">Save</button>
+  </div>
+</form>

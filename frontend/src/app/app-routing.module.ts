@@ -5,12 +5,37 @@ import { MenuComponent } from './client/menu/menu.component';
 import { PizzaViewComponent } from './client/pizza-view/pizza-view.component';
 import { CartComponent } from './client/cart/cart.component';
 import { CheckoutComponent } from './client/checkout/checkout.component';
+import { OrdersComponent } from './admin/orders/orders.component';
+import { IngredientComponent } from './admin/ingredient/ingredient.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './services/auth.guard';
 import { OrderViewComponent } from './client/order-view/order-view.component';
+import { AdminPizzasComponent } from './admin/admin-pizzas/admin-pizzas.component';
+import { AdminPizzaEditComponent } from './admin/admin-pizza-edit/admin-pizza-edit.component';
 
 const routes: Routes = [
   {
     component: AdminComponent,
     path: 'admin',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        component: OrdersComponent,
+        path: 'orders',
+      },
+      {
+        component: IngredientComponent,
+        path: 'ingredient',
+      },
+      {
+        component: AdminPizzasComponent,
+        path: 'pizzas',
+      },
+      {
+        component: AdminPizzaEditComponent,
+        path: 'pizzas/:id/edit',
+      },
+    ],
   },
   {
     redirectTo: '/menu',
@@ -36,6 +61,10 @@ const routes: Routes = [
   {
     component: OrderViewComponent,
     path: 'order/:id',
+  },
+  {
+    component: LoginComponent,
+    path: 'login',
   },
   {
     path: '**',

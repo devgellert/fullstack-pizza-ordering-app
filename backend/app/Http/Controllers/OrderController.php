@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Auth;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 
 
 class OrderController extends Controller
@@ -166,6 +169,9 @@ class OrderController extends Controller
 
     public function deliver(Request $request, $id)
     {
+        if(!auth()->user()->is_courier) {
+            throw new AuthorizationException('User is not courier');
+        }
         $order = Order::find($id);
         if (!$order) {
             throw new NotFoundHttpException();
